@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using CommandAPI.Data;
+using CommandAPI.Models;
 
 namespace CommandAPI.Controllers
 {
@@ -9,11 +11,32 @@ namespace CommandAPI.Controllers
     public class CommandsController : ControllerBase
     {
 
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
+        private readonly ICommandAPIRepo _repository;
 
-            return new string[] { "this", "is", "hard", "coded" };
+        public CommandsController(ICommandAPIRepo repository)
+        {
+            _repository = repository;
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Command>> GetAllCommands()
+        {
+            var items = _repository.GetAllCommands();
+            return Ok(items);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Command> GetCommandById(int id)
+        {
+            var item = _repository.GetCommandById(id);
+            if (item == null)
+            {
+                return NoContent();
+            }
+            else
+            {
+                return Ok(item);
+            }
         }
 
     }
