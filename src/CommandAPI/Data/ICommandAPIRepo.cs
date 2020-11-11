@@ -5,7 +5,7 @@ namespace CommandAPI.Data
 {
     public interface ICommandAPIRepo
     {
-        bool SaveChances();
+        bool SaveChanges();
         IEnumerable<Command> GetAllCommands();
         Command GetCommandById(int id);
         void CreateCommand(Command cmd);

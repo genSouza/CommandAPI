@@ -48,7 +48,7 @@ namespace CommandAPI.Data
             };
         }
 
-        bool ICommandAPIRepo.SaveChances()
+        bool ICommandAPIRepo.SaveChanges()
         {
             throw new System.NotImplementedException();
         }
