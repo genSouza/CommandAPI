@@ -15,7 +15,8 @@ namespace CommandAPI.Data
         }
         void ICommandAPIRepo.CreateCommand(Command cmd)
         {
-            if(cmd == null) {
+            if (cmd == null)
+            {
                 throw new ArgumentNullException(nameof(cmd));
             }
             _context.CommandItems.Add(cmd);
@@ -24,7 +25,11 @@ namespace CommandAPI.Data
 
         void ICommandAPIRepo.DeleteCommand(Command cmd)
         {
-            throw new System.NotImplementedException();
+            if (cmd == null)
+            {
+                throw new ArgumentNullException(nameof(cmd));
+            }
+            _context.CommandItems.Remove(cmd);
         }
 
         IEnumerable<Command> ICommandAPIRepo.GetAllCommands()
